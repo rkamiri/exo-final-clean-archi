@@ -1,6 +1,6 @@
 package infrastructure;
 
-import model.Tache;
+import domaine.model.Tache;
 
 public interface ITaskFormater {
 

@@ -1,11 +1,11 @@
-package model;
+package domaine.model;
 
-public enum Argument {
+public enum TypeArgument {
     DESCRIPTION("-c"), STATUT("-s"), ECHEANCE("-d");
 
     private String argument;
 
-    private Argument(String argument) {
+    private TypeArgument(String argument) {
         this.argument = argument;
     }
 

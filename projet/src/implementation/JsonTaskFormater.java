@@ -1,8 +1,8 @@
 package implementation;
 
 import infrastructure.ITaskFormater;
-import model.Statut;
-import model.Tache;
+import domaine.model.Statut;
+import domaine.model.Tache;
 import org.json.JSONObject;
 
 import java.time.LocalDate;

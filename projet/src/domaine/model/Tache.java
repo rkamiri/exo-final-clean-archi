@@ -1,7 +1,6 @@
-package model;
+package domaine.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Tache {
     private int identifiant;
