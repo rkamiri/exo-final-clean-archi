@@ -10,6 +10,13 @@ public class Tache {
     private Statut statut;
     private String description;
 
+    public Tache(int identifiant, LocalDate dateCreation, String description) {
+        this.identifiant = identifiant;
+        this.dateCreation = dateCreation;
+        this.statut = Statut.A_FAIRE;
+        this.description = description;
+    }
+
     public Tache(int identifiant, LocalDate dateCreation, LocalDate dateFin, LocalDate echeance, String description) {
         this.identifiant = identifiant;
         this.dateCreation = dateCreation;

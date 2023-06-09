@@ -12,5 +12,7 @@ public abstract class Commande {
 
     public abstract void executerCommande();
 
-    public getArgument()
+    public List<Argument> getArgument() {
+        return this.arguments;
+    }
 }
