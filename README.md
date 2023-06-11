@@ -18,11 +18,13 @@ Pour lancer les tests, il faut lancer le script run2.sh.
 
 
 ### Les arguments à utiliser dans la commande sont : 
--c : pour la création d'une tâche  
--d : pour la description d'une tâche  
+-c : pour la description d'une tâche  
+-d : pour la date d'échéance d'une tâche  
 -s : pour le statut d'une tâche  
 
 ### Exemple 
 ./run.sh list  
 ./run.sh add -c:"my new task"  
-./run.sh update 123 -s:"terminée"
+./run.sh update 1 -s:"terminée"
+./run.sh update 1 -d:"2023-7-30"
+./run.sh remove 1
