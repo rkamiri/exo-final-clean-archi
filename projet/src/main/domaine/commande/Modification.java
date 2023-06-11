@@ -37,7 +37,7 @@ public class Modification extends Commande {
         try {
            fileLines = Files.readAllLines(file.toPath());
         } catch (Exception e) {
-            System.out.println("Erreur lor de la lecture du fichier \n Le fichier n'a pas pu être lu");
+            System.out.println("Erreur lors de la lecture du fichier \n Le fichier n'a pas pu être lu");
             e.printStackTrace();
         }
         String fileContent = String.join("", fileLines);

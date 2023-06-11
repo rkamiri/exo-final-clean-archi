@@ -2,7 +2,6 @@ package domaine.commande;
 
 import domaine.model.Argument;
 import domaine.model.Commande;
-import domaine.model.Requete;
 import domaine.model.Tache;
 import implementation.FileReader;
 import implementation.JsonTaskFormater;
@@ -28,7 +27,6 @@ public class Lister extends Commande {
     public void executerCommande() {
        File directory = this.fileReader.read(this.getDirectoryPath());
         File[] files = directory.listFiles();
-        List<File> listFiles = Arrays.stream(files).toList();
         List<Tache> taches = Arrays.stream(files).map(file -> {
             List<String> fileLines = null;
             try {
@@ -39,6 +37,9 @@ public class Lister extends Commande {
             String fileContent = String.join("", fileLines);
             return this.taskFormater.formatToTask(fileContent);
         }).toList();
+        for (Tache tache : taches) {
+             System.out.println(tache);
+        }
     }
 
     public String getDirectoryPath() {

@@ -31,7 +31,6 @@ public class Creation extends Commande {
         String stringifiedTask =  taskFormater.TaskToFormaterType(tache);
         try {
             fileWriter.write(getPath(tache.getIdentifiant()), stringifiedTask);
-            // write next line in data.txt without overwriting
             fileWriter.write(getDataPath(), String.valueOf(tache.getIdentifiant()));
         } catch (Exception e) {
             e.printStackTrace();
@@ -76,6 +75,6 @@ public class Creation extends Commande {
     }
 
     public String getDataPath() {
-        return System.getProperty("user.dir")+"/projet/src/main/data/data.txt";
+        return System.getProperty("user.dir")+"/projet/src/main/id/data.txt";
     }
 }

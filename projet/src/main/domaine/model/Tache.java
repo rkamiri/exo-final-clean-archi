@@ -102,4 +102,16 @@ public class Tache {
         if (autreTache == null || getClass() != autreTache.getClass()) return false;
         return this.identifiant == ((Tache) autreTache).getIdentifiant() && this.dateCreation.isEqual(((Tache) autreTache).getDateCreation()) && this.hasSameDates((Tache) autreTache) && this.statut.equals(((Tache) autreTache).getStatut()) && this.description.equals(((Tache) autreTache).getDescription());
     }
+
+    @Override
+    public String toString() {
+        return "Tache{" +
+                "identifiant=" + identifiant +
+                ", dateCreation=" + dateCreation +
+                ", dateFin=" + dateFin +
+                ", echeance=" + echeance +
+                ", statut=" + statut +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
