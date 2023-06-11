@@ -35,6 +35,12 @@ public class Tache {
         this.description = description;
     }
 
+    public Tache(int nextIdentifiant) {
+        this.identifiant = nextIdentifiant;
+        this.dateCreation = LocalDate.now();
+        this.statut = Statut.A_FAIRE;
+    }
+
     public int getIdentifiant() {
         return identifiant;
     }

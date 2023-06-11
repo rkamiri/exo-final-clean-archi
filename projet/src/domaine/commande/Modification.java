@@ -2,6 +2,7 @@ package domaine.commande;
 
 import domaine.model.Argument;
 import domaine.model.Commande;
+import domaine.model.Statut;
 import domaine.model.Tache;
 import implementation.FileReader;
 import implementation.FileWriter;
@@ -32,16 +33,27 @@ public class Modification extends Commande {
     public void executerCommande() {
         String path = getPath(identifiantTache);
         File file = fileReader.read(path);
-        List<String> fileLines = Files.readAllLines(file.toPath());
+        List<String> fileLines = null;
+        try {
+           fileLines = Files.readAllLines(file.toPath());
+        } catch (Exception e) {
+            System.out.println("Erreur lor de la lecture du fichier \n Le fichier n'a pas pu être lu");
+            e.printStackTrace();
+        }
         String fileContent = String.join("", fileLines);
         Tache tache = taskFormater.formatToTask(fileContent);
         Tache tacheUpdated = updateTask(tache, super.getArgument());
-        String stringifiedTask =  taskFormater.TaskToFormaterType(tacheUpdated);
-        fileWriter.write(path, stringifiedTask);
+        String stringifiedTask = taskFormater.TaskToFormaterType(tacheUpdated);
+        try {
+            fileWriter.write(path, stringifiedTask);
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la modification de la tache \n Le fichier n'a pas pu être modifié");
+            e.printStackTrace();
+        }
     }
 
     public String getPath(int identifiant) {
-        return "/data/" + identifiant + ".json";
+        return System.getProperty("user.dir")+"/projet/src/data/" + identifiant + ".json";
     }
 
     public Tache updateTask(Tache tache, List<Argument> arguments) {
@@ -54,7 +66,7 @@ public class Modification extends Commande {
                     tache.setEcheance(LocalDate.parse(argument.getValeur()));
                     break;
                 case STATUT:
-                    tache.setStatut(argument.getValeur());
+                    tache.setStatut(Statut.valueOf(argument.getValeur()));
                     break;
                 default:
                     break;

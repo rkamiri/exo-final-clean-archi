@@ -25,17 +25,17 @@ public class Lister extends Commande {
 
     @Override
     public void executerCommande() {
-        File directory = this.fileReader.read(this.getDirectoryPath(""));
+       /* File directory = this.fileReader.read(this.getDirectoryPath(""));
         File[] files = directory.listFiles();
         List<File> listFiles = Arrays.stream(files).toList();
         List<Tache> taches = Arrays.stream(files).map(file -> {
             List<String> fileLines = Files.readAllLines(file.toPath());
             String fileContent = String.join("", fileLines);
             return this.taskFormater.formatToTask(fileContent);
-        }).toList();
+        }).toList();*/
     }
 
-    public String getDirectoryPath(String identifiant) {
-        return "";
+    public String getPath() {
+        return System.getProperty("user.dir")+"/projet/src/data/";
     }
 }

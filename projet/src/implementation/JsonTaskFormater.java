@@ -14,8 +14,8 @@ public class JsonTaskFormater implements ITaskFormater {
         JSONObject jsonObject = new JSONObject(stringifiedTask);
         int identifiant = jsonObject.getInt("identifiant");
         LocalDate dateCreation = LocalDate.parse(jsonObject.getString("dateCreation"));
-        LocalDate dateFin = LocalDate.parse(jsonObject.getString("dateFin"));
-        LocalDate echeance = LocalDate.parse(jsonObject.getString("echeance"));
+        LocalDate dateFin = jsonObject.isNull("dateFin") ? null : LocalDate.parse(jsonObject.getString("dateFin"));
+        LocalDate echeance = jsonObject.isNull("echeance") ? null : LocalDate.parse(jsonObject.getString("echeance"));
         Statut statut = jsonObject.getEnum(Statut.class,"statut");
         String description = jsonObject.getString("description");
         Tache task = new Tache(identifiant, dateCreation, dateFin, echeance, statut, description);
@@ -27,8 +27,8 @@ public class JsonTaskFormater implements ITaskFormater {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("identifiant", task.getIdentifiant());
         jsonObject.put("dateCreation", task.getDateCreation().toString());
-        jsonObject.put("dateFin", task.getDateFin().toString());
-        jsonObject.put("echeance", task.getEcheance().toString());
+        jsonObject.put("dateFin", task.getDateFin() == null  ? null : task.getDateFin().toString());
+        jsonObject.put("echeance", task.getEcheance() == null ? null : task.getEcheance().toString());
         jsonObject.put("statut", task.getStatut());
         jsonObject.put("description", task.getDescription());
 

@@ -12,7 +12,7 @@ public class QueryHandler implements IQueryHandler {
 
     @Override
     public void handle(String[] query) {
-        IQuery queryToSend = new Query(query);
+        IQuery queryToSend = new SystemQuery(query);
         this.queryTaskDispatcher.dispatch(queryToSend);
     }
 }

@@ -9,6 +9,7 @@ import domaine.model.TypeArgument;
 import domaine.model.TypeCommande;
 import domaine.commande.Creation;
 import infrastructure.ICommandeHandler;
+import infrastructure.IQuery;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,8 +17,8 @@ import java.util.List;
 
 public class CommandeHandler implements ICommandeHandler {
 
-    public void handle(Query query){
-        List<String> commandeData = Arrays.stream(query.getQuery()).toList();
+    public void handle(IQuery query){
+        List<String> commandeData = List.of(query.getQuery());
         TypeCommande typeCommande = this.FindCommandType(commandeData.get(0));
         List<Argument> arguments = new ArrayList<>();
         int taskId = -1; // -1 is the default value for taskId
@@ -55,9 +56,16 @@ public class CommandeHandler implements ICommandeHandler {
     }
 
     public List<Argument> getArgumentList(List<String> arguments){
+        for (String argument : arguments) {
+            System.out.println(argument);
+        }
+
         return arguments.stream().map(argument -> {
             String[] argumentData = argument.split(":");
-            return new Argument(TypeArgument.valueOf(argumentData[0]), argumentData[1]);
+            for (String singleargumentData : argumentData) {
+                System.out.println(singleargumentData);
+            }
+            return new Argument(TypeArgument.getRightArgument(argumentData[0]), argumentData[1]);
         }).toList();
     }
 

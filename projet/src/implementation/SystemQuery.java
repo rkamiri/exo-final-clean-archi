@@ -1,13 +1,12 @@
 package implementation;
 
 import infrastructure.IQuery;
-import domaine.model.TypeArgument;
 
 
-public class Query implements IQuery {
+public class SystemQuery implements IQuery {
     private String[] query;
 
-    public Query(String[] query) {
+    public SystemQuery(String[] query) {
         this.query = query;
     }
 

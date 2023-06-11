@@ -9,6 +9,15 @@ public enum TypeArgument {
         this.argument = argument;
     }
 
+    public static TypeArgument getRightArgument(String argumentDatum) {
+        for (TypeArgument argument : TypeArgument.values()) {
+            if (argument.getArgument().equals(argumentDatum)) {
+                return argument;
+            }
+        }
+        return null;
+    }
+
     public String getArgument() {
         return this.argument;
     }
