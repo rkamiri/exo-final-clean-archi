@@ -2,6 +2,7 @@ package domaine.commande;
 
 import domaine.model.Argument;
 import domaine.model.Commande;
+import domaine.model.Statut;
 import domaine.model.Tache;
 import implementation.FileReader;
 import implementation.FileWriter;
@@ -11,6 +12,7 @@ import infrastructure.IFileWriter;
 import infrastructure.ITaskFormater;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.List;
@@ -29,7 +31,7 @@ public class Modification extends Commande {
     }
 
     @Override
-    public void executerCommande() {
+    public void executerCommande() throws IOException {
         String path = getPath(identifiantTache);
         File file = fileReader.read(path);
         List<String> fileLines = Files.readAllLines(file.toPath());
@@ -54,7 +56,7 @@ public class Modification extends Commande {
                     tache.setEcheance(LocalDate.parse(argument.getValeur()));
                     break;
                 case STATUT:
-                    tache.setStatut(argument.getValeur());
+                    tache.setStatut(Statut.valueOf(argument.getValeur()));
                     break;
                 default:
                     break;

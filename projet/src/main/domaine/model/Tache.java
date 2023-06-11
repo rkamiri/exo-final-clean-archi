@@ -1,6 +1,7 @@
 package domaine.model;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Tache {
     private int identifiant;
@@ -31,7 +32,7 @@ public class Tache {
         this.dateCreation = dateCreation;
         this.dateFin = dateFin;
         this.echeance = echeance;
-        this.statut = Statut.A_FAIRE;
+        this.statut = statut;
         this.description = description;
     }
 
@@ -83,4 +84,15 @@ public class Tache {
         this.description = description;
     }
 
+
+    public boolean hasSameDates(Tache autreTache) {
+        if(this.dateFin == null && this.echeance == null) return autreTache.dateFin == null && autreTache.echeance == null;
+        return this.dateFin.isEqual(autreTache.dateFin) && this.echeance.isEqual(autreTache.echeance);
+    }
+    @Override
+    public boolean equals(Object autreTache) {
+        if (this == autreTache) return true;
+        if (autreTache == null || getClass() != autreTache.getClass()) return false;
+        return this.identifiant == ((Tache) autreTache).getIdentifiant() && this.dateCreation.isEqual(((Tache) autreTache).getDateCreation()) && this.hasSameDates((Tache) autreTache) && this.statut.equals(((Tache) autreTache).getStatut()) && this.description.equals(((Tache) autreTache).getDescription());
+    }
 }

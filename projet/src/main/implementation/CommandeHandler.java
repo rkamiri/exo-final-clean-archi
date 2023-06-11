@@ -10,13 +10,14 @@ import domaine.model.TypeCommande;
 import domaine.commande.Creation;
 import infrastructure.ICommandeHandler;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CommandeHandler implements ICommandeHandler {
 
-    public void handle(Query query){
+    public void handle(Query query) throws IOException {
         List<String> commandeData = Arrays.stream(query.getQuery()).toList();
         TypeCommande typeCommande = this.FindCommandType(commandeData.get(0));
         List<Argument> arguments = new ArrayList<>();

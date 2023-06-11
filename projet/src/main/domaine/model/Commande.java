@@ -1,5 +1,6 @@
 package domaine.model;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -10,7 +11,7 @@ public abstract class Commande {
         this.arguments = arguments;
     }
 
-    public abstract void executerCommande();
+    public abstract void executerCommande() throws IOException;
 
     public List<Argument> getArgument() {
         return this.arguments;
