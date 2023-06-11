@@ -25,4 +25,4 @@ Pour lancer les tests, il faut lancer le script run2.sh.
 ### Exemple 
 ./run.sh list  
 ./run.sh add -c:"my new task"  
-./run.sh update 123 -s:"terminé"
+./run.sh update 123 -s:"terminée"
