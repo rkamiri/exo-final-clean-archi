@@ -67,7 +67,7 @@ public class Modification extends Commande {
                     tache.setEcheance(LocalDate.parse(argument.getValeur()));
                     break;
                 case STATUT:
-                    tache.setStatut(Statut.valueOf(argument.getValeur()));
+                    tache.setStatut(Statut.statutValide(argument.getValeur()));
                     break;
                 default:
                     break;

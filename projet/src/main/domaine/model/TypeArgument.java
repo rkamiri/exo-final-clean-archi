@@ -9,7 +9,7 @@ public enum TypeArgument {
         this.argument = argument;
     }
 
-    public static TypeArgument getRightArgument(String argumentDatum) {
+    public static TypeArgument argumentValide(String argumentDatum) {
         for (TypeArgument argument : TypeArgument.values()) {
             if (argument.getArgument().equals(argumentDatum)) {
                 return argument;
