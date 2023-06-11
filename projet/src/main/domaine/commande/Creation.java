@@ -10,7 +10,6 @@ import infrastructure.ITaskFormater;
 import java.io.File;
 import java.nio.file.Files;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class Creation extends Commande {
@@ -28,10 +27,10 @@ public class Creation extends Commande {
     @Override
     public void executerCommande() {
         Tache tache = creerTache();
-        String stringifiedTask =  taskFormater.TaskToFormaterType(tache);
+        String tacheFormatee =  taskFormater.TaskToFormaterType(tache);
         try {
-            fileWriter.write(getPath(tache.getIdentifiant()), stringifiedTask);
-            fileWriter.write(getDataPath(), String.valueOf(tache.getIdentifiant()));
+            fileWriter.write(cheminJson(tache.getIdentifiant()), tacheFormatee);
+            fileWriter.write(cheminID(), String.valueOf(tache.getIdentifiant()));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,7 +41,7 @@ public class Creation extends Commande {
     }
 
     public Tache creerTache() {
-        Tache tache = new Tache(getNextIdentifiant());
+        Tache tache = new Tache(nouvelIdentifiant());
         for (Argument argument : this.getArgument()) {
             switch (argument.getTypeArgument()) {
                 case DESCRIPTION:
@@ -61,20 +60,20 @@ public class Creation extends Commande {
         return tache;
     }
 
-    public int getNextIdentifiant() {
-        File file = fileReader.read(getDataPath());
+    public int nouvelIdentifiant() {
+        File fichier = fileReader.read(cheminID());
         try {
-            return Integer.parseInt(Files.readString(file.toPath()))+1;
+            return Integer.parseInt(Files.readString(fichier.toPath()))+1;
         } catch (Exception e) {
             return 0;
         }
     }
 
-    public String getPath(int identifiant) {
+    public String cheminJson(int identifiant) {
         return System.getProperty("user.dir")+"/projet/src/main/data/" + identifiant + ".json";
     }
 
-    public String getDataPath() {
+    public String cheminID() {
         return System.getProperty("user.dir")+"/projet/src/main/id/data.txt";
     }
 }

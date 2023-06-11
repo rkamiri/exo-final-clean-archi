@@ -57,15 +57,8 @@ public class CommandeHandler implements ICommandeHandler {
     }
 
     public List<Argument> getArgumentList(List<String> arguments){
-        for (String argument : arguments) {
-            System.out.println(argument);
-        }
-
         return arguments.stream().map(argument -> {
             String[] argumentData = argument.split(":");
-            for (String singleargumentData : argumentData) {
-                System.out.println(singleargumentData);
-            }
             return new Argument(TypeArgument.getRightArgument(argumentData[0]), argumentData[1]);
         }).toList();
     }

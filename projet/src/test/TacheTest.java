@@ -4,7 +4,6 @@ import domaine.model.Argument;
 import domaine.model.Statut;
 import domaine.model.Tache;
 import domaine.model.TypeArgument;
-import implementation.CommandeHandler;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,7 +22,7 @@ public class TacheTest {
     public void test_update_task() {
         Tache tache = new Tache(1, LocalDate.now(), "hello world");
         Modification modification = new Modification(tache.getIdentifiant(), List.of(new Argument(TypeArgument.STATUT, Statut.ANNULEE.toString())));
-        Tache tacheModifiee = modification.updateTask(tache, modification.getArgument());
+        Tache tacheModifiee = modification.modificationTache(tache, modification.getArgument());
 
         Assert.assertEquals(new Tache(1, LocalDate.now(),null, null, Statut.ANNULEE, "hello world"), tacheModifiee);
     }

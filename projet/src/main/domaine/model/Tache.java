@@ -35,8 +35,8 @@ public class Tache {
         this.description = description;
     }
 
-    public Tache(int nextIdentifiant) {
-        this.identifiant = nextIdentifiant;
+    public Tache(int nouvelIdentifiant) {
+        this.identifiant = nouvelIdentifiant;
         this.dateCreation = LocalDate.now();
         this.statut = Statut.A_FAIRE;
     }
@@ -90,7 +90,7 @@ public class Tache {
     }
 
 
-    public boolean hasSameDates(Tache autreTache) {
+    public boolean dateSimilaires(Tache autreTache) {
         if(this.dateFin == null && this.echeance == null) return autreTache.dateFin == null && autreTache.echeance == null;
         return this.dateFin.isEqual(autreTache.dateFin) && this.echeance.isEqual(autreTache.echeance);
     }
@@ -100,7 +100,7 @@ public class Tache {
         System.out.println(autreTache);
         if (this == autreTache) return true;
         if (autreTache == null || getClass() != autreTache.getClass()) return false;
-        return this.identifiant == ((Tache) autreTache).getIdentifiant() && this.dateCreation.isEqual(((Tache) autreTache).getDateCreation()) && this.hasSameDates((Tache) autreTache) && this.statut.equals(((Tache) autreTache).getStatut()) && this.description.equals(((Tache) autreTache).getDescription());
+        return this.identifiant == ((Tache) autreTache).getIdentifiant() && this.dateCreation.isEqual(((Tache) autreTache).getDateCreation()) && this.dateSimilaires((Tache) autreTache) && this.statut.equals(((Tache) autreTache).getStatut()) && this.description.equals(((Tache) autreTache).getDescription());
     }
 
     @Override

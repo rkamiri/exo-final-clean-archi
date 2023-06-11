@@ -19,12 +19,12 @@ public class Suppression extends Commande {
 
     @Override
     public void executerCommande() {
-        String path = getPath(identifiantTache);
-        File file = fileReader.read(path);
+        String chemin = cheminJson(identifiantTache);
+        File file = fileReader.read(chemin);
         file.delete();
     }
 
-    public String getPath(int identifiant) {
+    public String cheminJson(int identifiant) {
         return System.getProperty("user.dir")+"/projet/src/main/data/" + identifiant + ".json";
     }
 }

@@ -1,7 +1,5 @@
 package domaine.model;
 
-import domaine.model.TypeArgument;
-
 public class Argument {
     private TypeArgument argument;
     private String valeur;

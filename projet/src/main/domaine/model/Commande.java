@@ -2,7 +2,6 @@ package domaine.model;
 
 import java.util.List;
 
-
 public abstract class Commande {
     List<Argument> arguments;
 

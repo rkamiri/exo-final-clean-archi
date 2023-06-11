@@ -25,24 +25,24 @@ public class Lister extends Commande {
 
     @Override
     public void executerCommande() {
-       File directory = this.fileReader.read(this.getDirectoryPath());
-        File[] files = directory.listFiles();
-        List<Tache> taches = Arrays.stream(files).map(file -> {
-            List<String> fileLines = null;
+        File dossier = this.fileReader.read(this.cheminDossierJson());
+        File[] fichiers = dossier.listFiles();
+        List<Tache> taches = Arrays.stream(fichiers).map(fichier -> {
+            List<String> lignesFichier;
             try {
-                fileLines = Files.readAllLines(file.toPath());
+                lignesFichier = Files.readAllLines(fichier.toPath());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            String fileContent = String.join("", fileLines);
-            return this.taskFormater.formatToTask(fileContent);
+            String contenuFichier = String.join("", lignesFichier);
+            return this.taskFormater.formatToTask(contenuFichier);
         }).toList();
         for (Tache tache : taches) {
              System.out.println(tache);
         }
     }
 
-    public String getDirectoryPath() {
+    public String cheminDossierJson() {
         return System.getProperty("user.dir")+"/projet/src/main/data/";
     }
 }

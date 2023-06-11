@@ -12,6 +12,7 @@ import infrastructure.IFileWriter;
 import infrastructure.ITaskFormater;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.util.List;
@@ -31,32 +32,32 @@ public class Modification extends Commande {
 
     @Override
     public void executerCommande() {
-        String path = getPath(identifiantTache);
-        File file = fileReader.read(path);
-        List<String> fileLines = null;
+        String cheminFichier = cheminJson(identifiantTache);
+        File fichier = fileReader.read(cheminFichier);
+        List<String> lignesFichier;
         try {
-           fileLines = Files.readAllLines(file.toPath());
-        } catch (Exception e) {
+            lignesFichier = Files.readAllLines(fichier.toPath());
+        } catch (IOException e) {
             System.out.println("Erreur lors de la lecture du fichier \n Le fichier n'a pas pu être lu");
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        String fileContent = String.join("", fileLines);
-        Tache tache = taskFormater.formatToTask(fileContent);
-        Tache tacheUpdated = updateTask(tache, super.getArgument());
-        String stringifiedTask = taskFormater.TaskToFormaterType(tacheUpdated);
+        String contenuFichier = String.join("", lignesFichier);
+        Tache tache = taskFormater.formatToTask(contenuFichier);
+        Tache tacheModifiee = modificationTache(tache, super.getArgument());
+        String tacheFormatee = taskFormater.TaskToFormaterType(tacheModifiee);
         try {
-            fileWriter.write(path, stringifiedTask);
+            fileWriter.write(cheminFichier, tacheFormatee);
         } catch (Exception e) {
             System.out.println("Erreur lors de la modification de la tache \n Le fichier n'a pas pu être modifié");
             e.printStackTrace();
         }
     }
 
-    public String getPath(int identifiant) {
+    public String cheminJson(int identifiant) {
         return System.getProperty("user.dir")+"/projet/src/main/data/" + identifiant + ".json";
     }
 
-    public Tache updateTask(Tache tache, List<Argument> arguments) {
+    public Tache modificationTache(Tache tache, List<Argument> arguments) {
         for (Argument argument : arguments) {
             switch (argument.getTypeArgument()) {
                 case DESCRIPTION:
