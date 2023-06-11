@@ -25,6 +25,6 @@ Pour lancer les tests, il faut lancer le script run2.sh.
 ### Exemple 
 ./run.sh list  
 ./run.sh add -c:"my new task"  
-./run.sh update 1 -s:"terminée"
-./run.sh update 1 -d:"2023-7-30"
+./run.sh update 1 -s:"terminée"  
+./run.sh update 1 -d:"2023-7-30"  
 ./run.sh remove 1
