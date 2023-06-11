@@ -72,10 +72,10 @@ public class Creation extends Commande {
     }
 
     public String getPath(int identifiant) {
-        return System.getProperty("user.dir")+"/projet/src/data/" + identifiant + ".json";
+        return System.getProperty("user.dir")+"/projet/src/main/data/" + identifiant + ".json";
     }
 
     public String getDataPath() {
-        return System.getProperty("user.dir")+"/projet/src/data/data.txt";
+        return System.getProperty("user.dir")+"/projet/src/main/data/data.txt";
     }
 }

@@ -12,7 +12,6 @@ import infrastructure.ICommandeHandler;
 import infrastructure.IQuery;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CommandeHandler implements ICommandeHandler {
@@ -24,7 +23,7 @@ public class CommandeHandler implements ICommandeHandler {
         int taskId = -1; // -1 is the default value for taskId
         if (typeCommande == TypeCommande.CREATION){
             arguments = this.getArgumentList(commandeData.subList(1, commandeData.size()));
-        } else if (typeCommande != TypeCommande.Liste) {
+        } else if (typeCommande != TypeCommande.LISTE) {
             taskId = this.FindTaskId(commandeData.get(1));
             arguments = this.getArgumentList(commandeData.subList(2, commandeData.size()));
         }
@@ -35,10 +34,12 @@ public class CommandeHandler implements ICommandeHandler {
         switch(commandeType){
             case "add":
                 return TypeCommande.CREATION;
-            case "delete":
+            case "remove":
                 return TypeCommande.SUPPRESSION;
             case "update":
                 return TypeCommande.MODIFICATION;
+            case "list":
+                return TypeCommande.LISTE;
             default:
                 return null;
         }
@@ -81,7 +82,7 @@ public class CommandeHandler implements ICommandeHandler {
             case SUPPRESSION:
                 commande = new Suppression(taskId, arguments);
                 break;
-            case Liste:
+            case LISTE:
                 commande = new Lister(arguments);
                 break;
             default:

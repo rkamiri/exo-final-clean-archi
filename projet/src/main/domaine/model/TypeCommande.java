@@ -1,7 +1,7 @@
 package domaine.model;
 
 public enum TypeCommande {
-    CREATION("add"), MODIFICATION("update"), SUPPRESSION("remove"), Liste("list");
+    CREATION("add"), MODIFICATION("update"), SUPPRESSION("remove"), LISTE("list");
 
     private String commande;
 

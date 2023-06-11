@@ -25,6 +25,6 @@ public class Suppression extends Commande {
     }
 
     public String getPath(int identifiant) {
-        return System.getProperty("user.dir")+"/projet/src/data/" + identifiant + ".json";
+        return System.getProperty("user.dir")+"/projet/src/main/data/" + identifiant + ".json";
     }
 }
